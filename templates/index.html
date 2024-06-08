@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'content' %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sección de Flanes</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Estilos personalizados -->
+  <style>
+    body {
+      font-family: "Pillow Case", sans-serif;
+    }
+    .flan-section {
+      background-color: #fce4ec; /* Color rosa */
+      padding: 50px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <section class="flan-section">
+    <div class="row">
+      <div class="col text-center">
+        <h1>Flanes de hoy y siempre</h1>
+        <p>¡Sumérgete en nuestra selección de flanes!</p>
+      </div>
+    </div>
+    <!-- Aquí iría el contenido de los flanes -->
+  </section>
+</div>
+
+<!-- Bootstrap JS y dependencias -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+
+
+<section class="container mx-auto pt-5">
+  <div class="row row-cols-1 row-cols-md-3 row-cols-lg-5 g-4">
+      {% for flan in flanes %}
+      <div class="col">
+        <div class="card h-100">
+          <a href="{% url 'flan_details' flan.id %}">
+            <img src="{{ flan.imagen }}" height="200px" class="card-img-top" alt="{{ flan.slug }}">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title">{{ flan.name }}</h5>
+            <p class="card-text text-justify">
+                {% if flan.descipcion|length > 100 %}
+                    {{ flan.descipcion|slice:":100" }}... <a href="">descripcion</a>
+                {% else %}
+                    {{ flan.descipcion }}
+                {% endif %}
+            </p>
+        </div>
+          <div class="card-footer">
+            <small class="text-body-secondary">Last updated 3 mins ago</small>
+          </div>
+          <p>precio :</p>{{ flan.precio }}
+        </div>
+      </div>
+    {% endfor %}  
+  </div>
+</section>
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sección de Flanes</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Estilos personalizados -->
+  <style>
+    body {
+      font-family: "Pillow Case", sans-serif;
+    }
+    .flan-section {
+      background-color: #fce4ec; /* Color rosa */
+      padding: 50px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <section class="flan-section">
+    <div class="row">
+      <div class="col text-center">
+        <h1>Exquisitas gelatinas</h1>
+        <p>¡Descubre nuestra NUEVA selección de gelatinas!</p>
+      </div>
+    </div>
+    <!-- Aquí iría el contenido de los gelatinas -->
+  </section>
+</div>
+
+<!-- Bootstrap JS y dependencias -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+
+
+<section class="container mx-auto pt-5">
+  <div class="row row-cols-1 row-cols-md-3 row-cols-lg-5 g-4">
+      {% for g in gelatinas %}
+      <div class="col">
+        <div class="card h-100">
+
+            <img src="{{ g.imagen }}" height="200px" class="card-img-top">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title">{{ g.name }}</h5>
+            <p class="card-text text-justify">
+                {% if g.descipcion|length > 100 %}
+                    {{ g.descipcion|slice:":100" }}... <a href="">descripcion</a>
+                {% else %}
+                    {{ g.descipcion }}
+                {% endif %}
+            </p>
+        </div>
+          <div class="card-footer">
+            <small class="text-body-secondary">{{g.tamanio}} </small>
+          </div>
+          <p>precio :</p>{{ g.precio }}
+        </div>
+      </div>
+    {% endfor %}  
+  </div>
+</section>
+{% endblock 'content' %}
